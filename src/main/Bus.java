@@ -1,5 +1,8 @@
 package main;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class Bus {
     private int no;
     private int direction;
@@ -58,9 +61,14 @@ public class Bus {
                 duration = System.currentTimeMillis() / 1000 - timeStamp;
                 timeStamp += duration;
 
-                if (!BusStop.list().containsKey(lastStopName))
-                    BusStop.list().put(lastStopName, new BusStop(lastStopName, stopName));
-                BusStop.list().get(lastStopName).addTime((int) duration);
+                Calendar calendar = Calendar.getInstance();
+                String[] weekDays = { "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday" };
+                String time = new SimpleDateFormat("HH").format(calendar.getTime());
+                String key = lastStopName + weekDays[calendar.get(Calendar.DAY_OF_WEEK) - 1] + time;
+
+                if (!BusStop.list().containsKey(key))
+                    BusStop.list().put(key, new BusStop(lastStopName, stopName));
+                BusStop.list().get(key).addTime((int) duration);
             }
         }
 

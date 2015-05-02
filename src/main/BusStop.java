@@ -1,5 +1,8 @@
 package main;
 
+import database.DataBase;
+
+import java.sql.ResultSet;
 import java.util.Hashtable;
 
 public class BusStop {
@@ -25,12 +28,31 @@ public class BusStop {
         numTime = 0;
     }
 
+    public BusStop(ResultSet rs) throws Exception {
+        startPoint = rs.getString("start");
+        destPoint = rs.getString("dest");
+
+        minTime = rs.getInt("min");
+        maxTime = rs.getInt("max");
+        avgTime = rs.getInt("avg");
+        numTime = rs.getInt("num");
+    }
+
     public void addTime(int time) {
         numTime++;
         minTime = minTime > time ? time : minTime;
         maxTime = maxTime < time ? time : maxTime;
-        avgTime = (avgTime * numTime + time) / (numTime);
+        avgTime = (avgTime * (numTime - 1) + time) / (numTime);
+        DataBase.update(this);
         System.out.println(startPoint + " -> " + destPoint + " (최소 : " + minTime + ", 최대 : " + maxTime + ", 평균 : " + avgTime + ")");
+    }
+
+    public String getStartPoint() {
+        return startPoint;
+    }
+
+    public String getDestPoint() {
+        return destPoint;
     }
 
     public int getMinTime() {
@@ -43,5 +65,9 @@ public class BusStop {
 
     public int getAvgTime() {
         return avgTime;
+    }
+
+    public int getNumTime() {
+        return numTime;
     }
 }
