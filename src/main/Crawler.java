@@ -13,7 +13,7 @@ import org.w3c.dom.NodeList;
 
 public class Crawler {
     private String busDataUrl = "http://apis.its.ulsan.kr:8088/Service4.svc/BusLocationInfo.xo?crypte=A&routeid=";
-    private String[] busCompanies = { "19210", "19410", "19610" };
+    private String[] busCompanies = { "1921", "1941", "1961" };
     private Hashtable<String, Bus> busList = new Hashtable<>();
 
     private static Crawler crawler = null;
@@ -25,7 +25,7 @@ public class Crawler {
         return crawler;
     }
 
-    public void updateBusData(int _busNo, int _direction) {
+    public void updateBusData(String _busNo, int _direction) {
         try {
             for (String company : busCompanies) {
                 String dataUrl = busDataUrl + company + _busNo + _direction;
@@ -35,6 +35,7 @@ public class Crawler {
                 Document doc = parseXML(connection.getInputStream());
                 NodeList nameNodes = doc.getElementsByTagName("BUSNO");
                 NodeList stopNodes = doc.getElementsByTagName("STOPNAME");
+                NodeList stopIdNodes = doc.getElementsByTagName("STOPID");
                 NodeList xNodes = doc.getElementsByTagName("BUSX");
                 NodeList yNodes = doc.getElementsByTagName("BUSY");
 
@@ -46,13 +47,15 @@ public class Crawler {
                 for (int i = 0; i < busCount; i++) {
                     String name = nameNodes.item(i).getTextContent();
                     String stop = stopNodes.item(i).getTextContent();
+                    int stopId = Integer.parseInt(stopIdNodes.item(i).getTextContent());
                     double x = Double.parseDouble(xNodes.item(i).getTextContent());
                     double y = Double.parseDouble(yNodes.item(i).getTextContent());
 
                     if (busList.containsKey(nameNodes.item(i).getTextContent()))
-                        busList.get(name).updateStopName(stop);
+                        busList.get(name).updateStopName(stopId);
                     else
-                        busList.put(nameNodes.item(i).getTextContent(), new Bus(_busNo, _direction, name, stop, x, y));
+                        busList.put(nameNodes.item(i).getTextContent(),
+                                new Bus(Integer.parseInt(_busNo), _direction, name, stopId, x, y));
                 }
             }
         } catch (Exception e) {

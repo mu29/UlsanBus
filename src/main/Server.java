@@ -10,8 +10,8 @@ public class Server {
         DataBase.connect("jdbc:mysql://localhost:3306/hexathon", "root", "projectDanbi");
         DataBase.load();
 
-        ArrayList<Integer> busList = new ArrayList<>();
-        Integer[] bus = new Integer[] { 133, 233, 337, 733, 304, 807, 304, 307, 123, 317, 327 };
+        ArrayList<String> busList = new ArrayList<>();
+        String[] bus = new String[] { "0133", "0233", "0337", "0733", "0304", "0807", "0304", "0307", "0123", "0317", "0327" };
         Collections.addAll(busList, bus);
 
         Thread thread = new Thread() {
@@ -21,7 +21,7 @@ public class Server {
                 try {
                     while (true) {
                         Crawler crawler = Crawler.getInstance();
-                        for (int bus : busList) {
+                        for (String bus : busList) {
                             crawler.updateBusData(bus, 1);
                             crawler.updateBusData(bus, 2);
                         }

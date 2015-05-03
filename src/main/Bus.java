@@ -7,18 +7,18 @@ public class Bus {
     private int no;
     private int direction;
     private String name;
-    private String lastStopName;
-    private String stopName;
+    private int lastStop;
+    private int stop;
     private long timeStamp;
     private double x;
     private double y;
 
-    public Bus(int _no, int _direction, String _name, String _stopName, double _x, double _y) {
+    public Bus(int _no, int _direction, String _name, int _stop, double _x, double _y) {
         no = _no;
         direction = _direction;
         name = _name;
-        lastStopName = "";
-        stopName = _stopName;
+        lastStop = 0;
+        stop = _stop;
         timeStamp = 0;
         x = _x;
         y = _y;
@@ -36,8 +36,8 @@ public class Bus {
         return name;
     }
 
-    public String getStopName() {
-        return stopName;
+    public int getStop() {
+        return stop;
     }
 
     public double getX() {
@@ -48,12 +48,12 @@ public class Bus {
         return y;
     }
 
-    public long updateStopName(String _stopName) {
+    public long updateStopName(int _stop) {
         long duration = 0;
 
-        if (!stopName.equals(_stopName)) {
-            lastStopName = stopName;
-            stopName = _stopName;
+        if (stop != _stop) {
+            lastStop = stop;
+            stop = _stop;
 
             if (timeStamp == 0) {
                 timeStamp = System.currentTimeMillis() / 1000;
@@ -64,10 +64,10 @@ public class Bus {
                 Calendar calendar = Calendar.getInstance();
                 String[] weekDays = { "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday" };
                 String time = new SimpleDateFormat("HH").format(calendar.getTime());
-                String key = lastStopName + weekDays[calendar.get(Calendar.DAY_OF_WEEK) - 1] + time;
+                String key = lastStop + weekDays[calendar.get(Calendar.DAY_OF_WEEK) - 1] + time;
 
                 if (!BusStop.list().containsKey(key))
-                    BusStop.list().put(key, new BusStop(lastStopName, stopName));
+                    BusStop.list().put(key, new BusStop(lastStop, stop));
                 BusStop.list().get(key).addTime((int) duration);
             }
         }

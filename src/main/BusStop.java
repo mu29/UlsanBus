@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.util.Hashtable;
 
 public class BusStop {
-    private String startPoint;
-    private String destPoint;
+    private int startPoint;
+    private int destPoint;
     private int minTime;
     private int maxTime;
     private int avgTime;
@@ -18,7 +18,7 @@ public class BusStop {
         return busStopList;
     }
 
-    public BusStop(String _start, String _dest) {
+    public BusStop(int _start, int _dest) {
         startPoint = _start;
         destPoint = _dest;
 
@@ -29,8 +29,8 @@ public class BusStop {
     }
 
     public BusStop(ResultSet rs) throws Exception {
-        startPoint = rs.getString("start");
-        destPoint = rs.getString("dest");
+        startPoint = rs.getInt("start");
+        destPoint = rs.getInt("dest");
 
         minTime = rs.getInt("min");
         maxTime = rs.getInt("max");
@@ -47,11 +47,11 @@ public class BusStop {
         System.out.println(startPoint + " -> " + destPoint + " (최소 : " + minTime + ", 최대 : " + maxTime + ", 평균 : " + avgTime + ")");
     }
 
-    public String getStartPoint() {
+    public int getStartPoint() {
         return startPoint;
     }
 
-    public String getDestPoint() {
+    public int getDestPoint() {
         return destPoint;
     }
 
