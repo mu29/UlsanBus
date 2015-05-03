@@ -24,7 +24,21 @@ public class DataBase {
         }
     }
 
-    public static void update(BusStop _stop) {
+    public static void insertStopData(int _stopId, String _stopName) {
+        try {
+            ResultSet rs = executeQuery("SELECT * FROM `bus_stop` WHERE `id` = '" + _stopId + "';");
+            if (!rs.next())
+                executeUpdate("INSERT `bus_stop` SET " +
+                        "`id` = '" + _stopId + "', " +
+                        "`name` = '" + _stopName + "';");
+
+            rs.close();
+        } catch (Exception e) {
+            logger.warning(e.getMessage());
+        }
+    }
+
+    public static void updateTimeData(BusStop _stop) {
         try {
             Calendar calendar = Calendar.getInstance();
             String[] weekDays = { "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday" };
@@ -32,7 +46,7 @@ public class DataBase {
 
             ResultSet rs = executeQuery("SELECT * FROM `" + weekDays[calendar.get(Calendar.DAY_OF_WEEK) - 1] + "` " +
                     "WHERE `start` ='" + _stop.getStartPoint() + "' AND " +
-                    "`dest` = '" + _stop.getDestPoint() +  "' AND " +
+                    "`dest` = '" + _stop.getDestPoint() + "' AND " +
                     "`time` = '" + time + "';");
 
             if (rs.next()) {

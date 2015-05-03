@@ -13,9 +13,9 @@ public class BusStop {
     private int avgTime;
     private int numTime;
 
-    private static Hashtable<String, BusStop> busStopList = new Hashtable<>();
+    private static Hashtable<String, BusStop> busTimeList = new Hashtable<>();
     public static Hashtable<String, BusStop> list() {
-        return busStopList;
+        return busTimeList;
     }
 
     public BusStop(int _start, int _dest) {
@@ -43,7 +43,7 @@ public class BusStop {
         minTime = minTime > time ? time : minTime;
         maxTime = maxTime < time ? time : maxTime;
         avgTime = (avgTime * (numTime - 1) + time) / (numTime);
-        DataBase.update(this);
+        DataBase.updateTimeData(this);
         System.out.println(startPoint + " -> " + destPoint + " (최소 : " + minTime + ", 최대 : " + maxTime + ", 평균 : " + avgTime + ")");
     }
 

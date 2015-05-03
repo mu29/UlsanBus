@@ -2,6 +2,7 @@ package main;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Hashtable;
 
 public class Bus {
     private int no;
@@ -12,6 +13,11 @@ public class Bus {
     private long timeStamp;
     private double x;
     private double y;
+
+    private static Hashtable<String, Bus> busList = new Hashtable<>();
+    public static Hashtable<String, Bus> list() {
+        return busList;
+    }
 
     public Bus(int _no, int _direction, String _name, int _stop, double _x, double _y) {
         no = _no;
@@ -48,7 +54,7 @@ public class Bus {
         return y;
     }
 
-    public long updateStopName(int _stop) {
+    public void updateStopName(int _stop) {
         long duration = 0;
 
         if (stop != _stop) {
@@ -59,6 +65,10 @@ public class Bus {
                 timeStamp = System.currentTimeMillis() / 1000;
             } else {
                 duration = System.currentTimeMillis() / 1000 - timeStamp;
+                if (duration > 600) {
+                    busList.remove(name);
+                    return;
+                }
                 timeStamp += duration;
 
                 Calendar calendar = Calendar.getInstance();
@@ -71,7 +81,5 @@ public class Bus {
                 BusStop.list().get(key).addTime((int) duration);
             }
         }
-
-        return duration;
     }
 }

@@ -1,18 +1,13 @@
 package main;
 
+import database.Constant;
 import database.DataBase;
-
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class Server {
     public static void main(String[] args) {
+        Constant.init();
         DataBase.connect("jdbc:mysql://localhost:3306/hexathon", "root", "projectDanbi");
         DataBase.load();
-
-        ArrayList<String> busList = new ArrayList<>();
-        String[] bus = new String[] { "0133", "0233", "0337", "0733", "0304", "0807", "0304", "0307", "0123", "0317", "0327" };
-        Collections.addAll(busList, bus);
 
         Thread thread = new Thread() {
             @Override
@@ -21,7 +16,7 @@ public class Server {
                 try {
                     while (true) {
                         Crawler crawler = Crawler.getInstance();
-                        for (String bus : busList) {
+                        for (String bus : Constant.busList) {
                             crawler.updateBusData(bus, 1);
                             crawler.updateBusData(bus, 2);
                         }
