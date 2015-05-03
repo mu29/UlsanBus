@@ -3,11 +3,14 @@ package main;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.ResultSet;
+import java.util.Calendar;
 import java.util.Hashtable;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import database.DataBase;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -50,6 +53,10 @@ public class Crawler {
                     int stopId = Integer.parseInt(stopIdNodes.item(i).getTextContent());
                     double x = Double.parseDouble(xNodes.item(i).getTextContent());
                     double y = Double.parseDouble(yNodes.item(i).getTextContent());
+                    
+                    ResultSet rs = DataBase.executeQuery("SELECT * FROM `bus_stop` WHERE `id` = '" + stopId + "';");
+                    if (!rs.next())
+                        DataBase.executeUpdate("INSERT `bus_stop` SET `name` = '" + stop + "';");
 
                     if (busList.containsKey(nameNodes.item(i).getTextContent()))
                         busList.get(name).updateStopName(stopId);

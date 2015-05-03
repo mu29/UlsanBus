@@ -31,8 +31,8 @@ public class DataBase {
             String time = new SimpleDateFormat("HH").format(calendar.getTime());
 
             ResultSet rs = executeQuery("SELECT * FROM `" + weekDays[calendar.get(Calendar.DAY_OF_WEEK) - 1] + "` " +
-                    "WHERE `start` ='" + _stop.getStartPointID() + "' AND " +
-                    "`dest` = '" + _stop.getDestPointID() +  "' AND " +
+                    "WHERE `start` ='" + _stop.getStartPoint() + "' AND " +
+                    "`dest` = '" + _stop.getDestPoint() +  "' AND " +
                     "`time` = '" + time + "';");
 
             if (rs.next()) {
@@ -41,13 +41,13 @@ public class DataBase {
                         "`max` = '" + _stop.getMaxTime() + "', " +
                         "`avg` = '" + _stop.getAvgTime() + "', " +
                         "`num` = '" + _stop.getNumTime() + "' " +
-                        "WHERE `start` ='" + _stop.getStartPointID() + "' AND " +
-                        "`dest` = '" + _stop.getDestPointID() +  "' AND " +
+                        "WHERE `start` ='" + _stop.getStartPoint() + "' AND " +
+                        "`dest` = '" + _stop.getDestPoint() +  "' AND " +
                         "`time` = '" + time + "';");
             } else {
                 executeUpdate("INSERT `" + weekDays[calendar.get(Calendar.DAY_OF_WEEK) - 1] + "` SET " +
-                        "`start` = '" + _stop.getStartPointID() + "', " +
-                        "`dest` = '" + _stop.getDestPointID() + "', " +
+                        "`start` = '" + _stop.getStartPoint() + "', " +
+                        "`dest` = '" + _stop.getDestPoint() + "', " +
                         "`time` = '" + time + "', " +
                         "`min` = '" + _stop.getMinTime() + "', " +
                         "`max` = '" + _stop.getMaxTime() + "', " +
