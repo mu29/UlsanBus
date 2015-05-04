@@ -12,7 +12,7 @@ public class Constant {
     public static ArrayList<String> busList = new ArrayList<>();
 
     public static void init() {
-        String[] bus = new String[] { "1127" };
+        String[] bus = new String[] { "0133", "0233", "0337", "0733", "0304", "0807", "0304", "0307", "0123", "0317", "0327", "1127" };
         Collections.addAll(busList, bus);
     }
 }
