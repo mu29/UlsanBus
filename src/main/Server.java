@@ -6,7 +6,7 @@ import database.DataBase;
 public class Server {
     public static void main(String[] args) {
         Constant.init();
-        DataBase.connect("jdbc:mysql://localhost:3306/hexathon_mu29", "id", "password");
+        DataBase.connect("jdbc:mysql://localhost:3306/hexathon_mu29_new", "id", "password");
         DataBase.load();
 
         Thread thread = new Thread() {
@@ -20,6 +20,7 @@ public class Server {
                             crawler.updateBusData(bus, 1);
                             crawler.updateBusData(bus, 2);
                         }
+                        Bus.checkCurrent();
                         Thread.sleep(1000);
                     }
                 } catch (InterruptedException e) {

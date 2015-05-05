@@ -1,6 +1,7 @@
 package main;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Hashtable;
 
@@ -14,9 +15,13 @@ public class Bus {
     private double x;
     private double y;
 
+    private static ArrayList<String> currentBusList = new ArrayList<>();
     private static Hashtable<String, Bus> busList = new Hashtable<>();
     public static Hashtable<String, Bus> list() {
         return busList;
+    }
+    public static ArrayList<String> currentList() {
+        return currentBusList;
     }
 
     public Bus(int _no, int _direction, String _name, int _stop, double _x, double _y) {
@@ -65,10 +70,6 @@ public class Bus {
                 timeStamp = System.currentTimeMillis() / 1000;
             } else {
                 duration = System.currentTimeMillis() / 1000 - timeStamp;
-                if (duration > 600) {
-                    busList.remove(name);
-                    return;
-                }
                 timeStamp += duration;
 
                 Calendar calendar = Calendar.getInstance();
@@ -81,5 +82,18 @@ public class Bus {
                 BusStop.list().get(key).addTime((int) duration);
             }
         }
+    }
+
+    public static void checkCurrent() {
+        ArrayList<String> discardList = new ArrayList<>();
+
+        for (Bus bus : busList.values())
+            if (!currentBusList.contains(bus))
+                discardList.add(bus.getName());
+
+        for (String name : discardList)
+            busList.remove(name);
+
+        currentBusList.clear();
     }
 }

@@ -50,6 +50,7 @@ public class Crawler {
                     double y = Double.parseDouble(yNodes.item(i).getTextContent());
 
                     DataBase.insertStopData(stopId, stop);
+                    Bus.currentList().add(name);
 
                     if (Bus.list().containsKey(name))
                         Bus.list().get(name).updateStopName(stopId);
