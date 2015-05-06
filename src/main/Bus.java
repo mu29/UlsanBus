@@ -88,7 +88,7 @@ public class Bus {
         ArrayList<String> discardList = new ArrayList<>();
 
         for (Bus bus : busList.values())
-            if (!currentBusList.contains(bus))
+            if (!currentBusList.contains(bus.getName()))
                 discardList.add(bus.getName());
 
         for (String name : discardList)

@@ -28,10 +28,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.19138756">
               <caret line="8" column="89" selection-start-line="8" selection-start-column="89" selection-end-line="8" selection-end-column="89" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -64,11 +64,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Bus.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Bus.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Bus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21052632">
-              <caret line="71" column="73" selection-start-line="71" selection-start-column="73" selection-end-line="71" selection-end-column="73" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="90" column="54" selection-start-line="90" selection-start-column="54" selection-end-line="90" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#538#539#0" expanded="true" />
@@ -135,8 +135,8 @@
         <option value="$PROJECT_DIR$/src/database/DataBase.java" />
         <option value="$PROJECT_DIR$/src/database/Constant.java" />
         <option value="$PROJECT_DIR$/src/main/Crawler.java" />
-        <option value="$PROJECT_DIR$/src/main/Server.java" />
         <option value="$PROJECT_DIR$/src/main/Bus.java" />
+        <option value="$PROJECT_DIR$/src/main/Server.java" />
       </list>
     </option>
   </component>
@@ -580,16 +580,16 @@
       <workItem from="1430672381875" duration="322000" />
       <workItem from="1430712975424" duration="305000" />
       <workItem from="1430713338528" duration="808000" />
-      <workItem from="1430812801964" duration="1168000" />
+      <workItem from="1430812801964" duration="2126000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25902000" />
+    <option name="totallyTimeSpent" value="26860000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1061,26 +1061,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="89" selection-start-line="8" selection-start-column="89" selection-end-line="8" selection-end-column="89" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Bus.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21052632">
-          <caret line="71" column="73" selection-start-line="71" selection-start-column="73" selection-end-line="71" selection-end-column="73" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="90" column="54" selection-start-line="90" selection-start-column="54" selection-end-line="90" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#538#539#0" expanded="true" />
             <element signature="e#568#569#0" expanded="true" />
             <element signature="e#950#951#0" expanded="true" />
             <element signature="e#975#976#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19138756">
+          <caret line="8" column="89" selection-start-line="8" selection-start-column="89" selection-end-line="8" selection-end-column="89" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
